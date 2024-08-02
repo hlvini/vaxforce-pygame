@@ -1,18 +1,14 @@
 import pygame
 import sys
 
-# Initialize Pygame
 pygame.init()
 
-# Screen dimensions
 largura = 800
 altura = 600
 
-# Colors
 branco = (255, 255, 255)
 preto = (0, 0, 0)
 
-# Create the display surface
 screen = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("TESTE_JOGO")
 
