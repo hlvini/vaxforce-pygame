@@ -1,6 +1,7 @@
-#Importando Libraries 
+# Importando Libraries
 import pygame
 import sys
+import subprocess
 
 # Inicializando Pygame
 pygame.init()
@@ -31,9 +32,10 @@ opcoes = ["[JOGAR]", "[OPÇÕES]", "[SAIR]"]
 #           print("Hello Function")
 # myFunction()
 
-# Essa função sera utilizadas para mostrar as opções da var. 
-#'opcoes', centralizar as opçoes, atualizar o display 
-#e destacar a opção selecionada em azul
+
+# Essa função sera utilizadas para mostrar as opções da var.
+#'opcoes', centralizar as opçoes, atualizar o display
+# e destacar a opção selecionada em azul
 def draw_menu(opcao_selec):
     tela.fill(BLACK)
 
@@ -49,8 +51,9 @@ def draw_menu(opcao_selec):
 
     pygame.display.flip()
 
-#A função main() ficara responsável para rastrear a opção selecionada
-#e receber os inputs do usuário e dar os outpus apropriados para cadas opção selecionada
+
+# A função main() ficara responsável para rastrear a opção selecionada
+# e receber os inputs do usuário e dar os outpus apropriados para cadas opção selecionada
 def main():
     opcao_selec = 0
 
@@ -69,7 +72,9 @@ def main():
 
                     if opcao_selec == 0:
                         print("JOGAR")
-                        # Jogo
+                        pygame.quit()
+                        subprocess.run(["python", "py_jogoTesteGameplay.py"])
+                        sys.exit()
                     elif opcao_selec == 1:
                         print("OPÇÕES")
                         # Opções
