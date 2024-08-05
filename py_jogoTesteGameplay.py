@@ -50,15 +50,15 @@ def main():
     rodando = True
     relogio = pygame.time.Clock() # Responsável por definir o framerate
     vidas = 3
-    fonte = pygame.font.SysFont("comicsans", 30)
+    fonte = pygame.font.SysFont("Segoe UI Emoji", 30)
     vel_y = 5 # Velocidade de movimento do sprite do player
     
     carro = Player(0, 200) # Posição inicial do sprite do player
 
     def display_redraw():
         display.blit(bg, (0, 0)) # Renderiza o BG na tela
-        display_vidas = fonte.render(f"Vidas: {vidas}", 1, (255, 0, 0)) # Renderiza o nome Vidas junto a sua respectiva variável
-        display.blit(display_vidas, (650, 10)) # pos. onde display_vidas sera mostrado na tela        
+        display_vidas = fonte.render(f"\u2764{vidas}", 1, (255, 0, 0)) # Renderiza o nome Vidas junto a sua respectiva variável
+        display.blit(display_vidas, (725, 10)) # pos. onde display_vidas sera mostrado na tela        
         carro.draw(display)
 
         pygame.display.update()
