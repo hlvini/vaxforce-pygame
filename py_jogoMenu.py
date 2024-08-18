@@ -14,10 +14,12 @@ altura = 600
 # Cores do Menu
 BRANCO = (255, 255, 255)
 AMARELO = (255, 255, 0)
+VERDE = (0, 255, 0)
 
 # Fontes
 pygame.font.init()
 font = pygame.font.Font(None, 74)
+small_font = pygame.font.Font(None, 36)
 
 # Superfície do Display
 tela = pygame.display.set_mode((largura, altura))
@@ -30,9 +32,44 @@ bg_image = pygame.transform.scale(bg_image, (largura, altura))
 # Carregando efeitos sonoros
 select = pygame.mixer.Sound(os.path.join("SFX", "Menu_Navigate_00.mp3"))
 
-
 # Menu
-opcoes = ["[JOGAR]", "[CONTROLES]", "[SAIR]"]
+opcoes = ["[JOGAR]", "[CRÉDITOS]", "[SAIR]"]
+
+def msotrar_creditos():
+    while True:
+        # Desenha imagem de fundo
+        tela.blit(bg_image, (0, 0))
+
+        # Desenha créditos
+        credit_text = small_font.render("Créditos:", True, BRANCO)
+        credit_rect = credit_text.get_rect(center=(largura // 2, 100))
+        tela.blit(credit_text, credit_rect)
+
+        credits = [
+            "Desenvolvedor: Hallen",
+            "Música: 8-Bit Sound Effects Library",
+            "Arte: Artista Nome",
+        ]
+        for i, line in enumerate(credits):
+            text = small_font.render(line, True, BRANCO)
+            text_rect = text.get_rect(center=(largura // 2, 150 + i * 40))
+            tela.blit(text, text_rect)
+
+        # Botão para voltar ao menu
+        voltar_text = small_font.render("[VOLTAR]", True, VERDE)
+        voltar_rect = voltar_text.get_rect(center=(largura // 2, altura - 50))
+        tela.blit(voltar_text, voltar_rect)
+
+        pygame.display.flip()  # Update do display
+
+        # Eventos
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    return  # Retorna ao menu
 
 def menu():
     opcao_selec = 0
@@ -57,7 +94,6 @@ def menu():
 
         # Eventos
         for event in pygame.event.get():
-            
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -74,8 +110,8 @@ def menu():
                         subprocess.run(["python", "py_jogoPrincipal.py"])
                         sys.exit()
                     elif opcao_selec == 1:
-                        print("CONTROLES")
-                        # Opções
+                        print("CRÉDITOS")
+                        msotrar_creditos()
                     elif opcao_selec == 2:
                         pygame.quit()
                         sys.exit()
