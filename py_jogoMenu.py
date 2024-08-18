@@ -35,10 +35,16 @@ select = pygame.mixer.Sound(os.path.join("SFX", "Menu_Navigate_00.mp3"))
 # Menu
 opcoes = ["[JOGAR]", "[CRÉDITOS]", "[SAIR]"]
 
-def msotrar_creditos():
+def mostrar_creditos():
     while True:
         # Desenha imagem de fundo
         tela.blit(bg_image, (0, 0))
+
+        # Desenha fundo preto semitransparente
+        black_bg = pygame.Surface((largura, altura))  # Cria uma superfície do tamanho da tela
+        black_bg.set_alpha(180)  # Define a transparência (0-255, onde 255 é totalmente opaco)
+        black_bg.fill((0, 0, 0))  # Preenche a superfície com preto
+        tela.blit(black_bg, (0, 0))  # Desenha a superfície na tela
 
         # Desenha créditos
         credit_text = small_font.render("Créditos:", True, BRANCO)
@@ -46,12 +52,12 @@ def msotrar_creditos():
         tela.blit(credit_text, credit_rect)
 
         credits = [
-            "Desenvolvedor: Hallen",
-            "Música: 8-Bit Sound Effects Library",
-            "Arte: Artista Nome",
+            "Desenvolvedor: por Hallen",
+            "Música: por Little Robot Sound Factory",
+            "Arte, BG do jogo: por Alucard",
         ]
         for i, line in enumerate(credits):
-            text = small_font.render(line, True, BRANCO)
+            text = small_font.render(line, True, AMARELO)
             text_rect = text.get_rect(center=(largura // 2, 150 + i * 40))
             tela.blit(text, text_rect)
 
@@ -111,7 +117,7 @@ def menu():
                         sys.exit()
                     elif opcao_selec == 1:
                         print("CRÉDITOS")
-                        msotrar_creditos()
+                        mostrar_creditos()
                     elif opcao_selec == 2:
                         pygame.quit()
                         sys.exit()
