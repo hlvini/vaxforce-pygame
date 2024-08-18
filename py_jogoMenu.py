@@ -12,7 +12,6 @@ altura = 600
 
 # Cores do Menu
 WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 
 # Fontes
@@ -23,27 +22,21 @@ font = pygame.font.Font(None, 74)
 tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption("Título")
 
+# Carregando Imagem de Fundo
+bg_image = pygame.image.load("background.jpg")
+bg_image = pygame.transform.scale(bg_image, (largura, altura))
+
 # Menu
 opcoes = ["[JOGAR]", "[OPÇÕES]", "[SAIR]"]
-
-# 'def' é uma keyword usada para definir (ou criar) uma função
-# função é um bloco de código que somente roda quando chamado
-# E.X: def myFunction()
-#           print("Hello Function")
-# myFunction()
-
-
-# Essa função sera utilizadas para mostrar as opções da var.
-#'opcoes', centralizar as opçoes, atualizar o display
-# e destacar a opção selecionada em azul
 
 def menu():
     opcao_selec = 0
 
     while True:
-        tela.fill(BLACK)  # Limpa a tela
+        # Desenha imagem de fundo
+        tela.blit(bg_image, (0, 0))
 
-        # Desenha opçõoes de menu
+        # Desenha opções de menu
         for i, opcao in enumerate(opcoes):
             if i == opcao_selec:
                 color = BLUE
@@ -56,7 +49,7 @@ def menu():
 
         pygame.display.flip()  # Update do display
 
-        # Eveontos
+        # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
