@@ -36,28 +36,27 @@ opcoes = ["[JOGAR]", "[OPÇÕES]", "[SAIR]"]
 # Essa função sera utilizadas para mostrar as opções da var.
 #'opcoes', centralizar as opçoes, atualizar o display
 # e destacar a opção selecionada em azul
-def draw_menu(opcao_selec):
-    tela.fill(BLACK)
 
-    for i, opcao in enumerate(opcoes):
-        if i == opcao_selec:
-            color = BLUE
-        else:
-            color = WHITE
-
-        text = font.render(opcao, True, color)
-        text_rect = text.get_rect(center=(largura // 2, 150 + i * 100))
-        tela.blit(text, text_rect)
-
-    pygame.display.flip()
-
-
-# A função main() ficara responsável para rastrear a opção selecionada
-# e receber os inputs do usuário e dar os outpus apropriados para cadas opção selecionada
-def main():
+def menu():
     opcao_selec = 0
 
     while True:
+        tela.fill(BLACK)  # Limpa a tela
+
+        # Desenha opçõoes de menu
+        for i, opcao in enumerate(opcoes):
+            if i == opcao_selec:
+                color = BLUE
+            else:
+                color = WHITE
+
+            text = font.render(opcao, True, color)
+            text_rect = text.get_rect(center=(largura // 2, 150 + i * 100))
+            tela.blit(text, text_rect)
+
+        pygame.display.flip()  # Update do display
+
+        # Eveontos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -69,7 +68,6 @@ def main():
                 elif event.key == pygame.K_UP:
                     opcao_selec = (opcao_selec - 1) % len(opcoes)
                 elif event.key == pygame.K_RETURN:
-
                     if opcao_selec == 0:
                         print("JOGAR")
                         pygame.quit()
@@ -82,8 +80,5 @@ def main():
                         pygame.quit()
                         sys.exit()
 
-        draw_menu(opcao_selec)
-
-
 if __name__ == "__main__":
-    main()
+    menu()
