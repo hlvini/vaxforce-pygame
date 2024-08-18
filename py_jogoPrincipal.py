@@ -1,4 +1,4 @@
-# Versão 0.9
+# Versão 1.0
 # Importando libraries
 
 import pygame
@@ -15,15 +15,15 @@ largura, altura = 360, 640
 
 # Mostra a tela, atrelada largura x altura
 display = pygame.display.set_mode((largura, altura))
-pygame.display.set_caption("Campanha Antirábica")
+pygame.display.set_caption("Inimigos da Raiva")
 
 # Carregando Sprites
-carro_img = pygame.transform.scale(pygame.image.load(os.path.join("PIXEL_ART", "carro.png")), (150, 150))  # Player Sprite
-dog1 = pygame.transform.scale(pygame.image.load(os.path.join("PIXEL_ART", "cao1.png")), (60, 60))  # Inimigo 01
-dog2 = pygame.transform.scale(pygame.image.load(os.path.join("PIXEL_ART", "cao2.png")), (60, 60))  # Inimigo 02
-dog3 = pygame.transform.scale(pygame.image.load(os.path.join("PIXEL_ART", "cao3.png")), (60, 60))  # Inimigo 03
-vac = pygame.image.load(os.path.join("PIXEL_ART", "vacina0.png"))  # Projétil 
-bg = pygame.transform.scale(pygame.image.load(os.path.join("PIXEL_ART", "bg.png")), (largura, altura))  # Fundo COPYRIGHT: wwwdavidstenfors.com
+carro_img = pygame.transform.scale(pygame.image.load(os.path.join("assets", "carro.png")), (150, 150))  # Player Sprite
+dog1 = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cao1.png")), (60, 60))  # Inimigo 01
+dog2 = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cao2.png")), (60, 60))  # Inimigo 02
+dog3 = pygame.transform.scale(pygame.image.load(os.path.join("assets", "cao3.png")), (60, 60))  # Inimigo 03
+vac = pygame.image.load(os.path.join("assets", "vacina0.png"))  # Projétil 
+bg = pygame.transform.scale(pygame.image.load(os.path.join("assets", "bg.png")), (largura, altura))  # Fundo COPYRIGHT: wwwdavidstenfors.com
 
 # Carregando Efeitos Sonoros
 disparar = pygame.mixer.Sound(os.path.join("SFX", "Shoot_00.mp3"))
@@ -116,7 +116,7 @@ def main():
     vel_y_inimigo = 3 # Velocidade de movimento do sprite do Inimigo
     vel_y_chefe = 1 # Velocidade de movimento do sprite do Chefe 
     inimigos = pygame.sprite.Group() # Cria um grupo para adicionar os inimigos
-    score = 90 # Quantos cães o player vacinou
+    score = 0 # Quantos cães o player vacinou
     boss_spawnado = False # Checa se o chefe não spawnou ainda
     
     # Adc movimento ao background
@@ -138,13 +138,13 @@ def main():
         inimigos.add(inimigo1, inimigo2, inimigo3) # Adc inimigos a variável 'inimigos'
 
     # Chefão
-    def spawn_boss():
+    def spawn_chefe():
         global boss
         # Tema do chefe
         pygame.mixer.music.load(os.path.join("SFX", "Loop_Run_For_Your_Life_03.mp3"))
         pygame.mixer.music.play(-1) 
         inimigos.empty()
-        boss_img = pygame.transform.scale(pygame.image.load(os.path.join("PIXEL_ART", "chefe.png")), (150, 150))  
+        boss_img = pygame.transform.scale(pygame.image.load(os.path.join("assets", "chefe.png")), (150, 150))  
         boss_width = boss_img.get_width()  
         boss_height = boss_img.get_height() 
         boss_x = (largura - boss_width) // 2 
@@ -213,7 +213,7 @@ def main():
         pygame.mixer.music.load(os.path.join("SFX", "Jingle_Lose_00.mp3"))
         pygame.mixer.music.play()
         fonte = pygame.font.SysFont("Segoe UI Bold", 25)
-        display_vitoria = fonte.render('Você Perdeu! [ESPAÇO] P/ Voltar ao MENU', 1, (255, 255, 0))
+        display_vitoria = fonte.render('Você Perdeu! [ESPAÇO] P/ Voltar ao MENU', 1, (255, 0, 0))
         texto_vitoria = display_vitoria.get_rect(center=(largura / 2, altura / 2))
         display.blit(display_vitoria, texto_vitoria)
         pygame.display.update()
@@ -244,7 +244,7 @@ def main():
         carro.update() # Atualiza o estado dos projéteis
         
         if score == 99 and not boss_spawnado: # Checa se o score é igual 99 e se o boss_spawnando é False
-            spawn_boss()
+            spawn_chefe()
             boss_spawnado = True
 
         for inimigo in inimigos:
