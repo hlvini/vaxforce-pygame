@@ -1,4 +1,4 @@
-Simples jogo educativo sobre a campanha nacional de vacinação antirábica, para a disciplina de Linguagem de Programação
+Simple Edutainment game about Brazil's national antirabies campaign, made for the Programming Logic discipline @ UFRN
 
 ## Assets License
 
