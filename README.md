@@ -1,4 +1,6 @@
-Simple Edutainment game about Brazil's national antirabies campaign, made for the Programming Logic discipline @ UFRN
+[PTBR] Jogo de entreterimento educativo para a conscientização sobre o vírus da Raiva, desenvolvido para a disciplina de Lógica de Programação @ UFRN
+
+[ENG] Simple Edutainment game for Rabies awareness, made for the Programming Logic course @ UFRN
 
 ## Assets License
 
