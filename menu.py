@@ -1,4 +1,4 @@
-import pygame
+import pygame # ce edition 
 import sys
 import subprocess
 import os 
