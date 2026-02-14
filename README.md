@@ -1,9 +1,7 @@
-[PTBR] Jogo de entreterimento educativo para a conscientização sobre o vírus da Raiva, desenvolvido para a disciplina de Lógica de Programação @ UFRN
+# Vax Force  
+Edutainment game developed to increase #RabiesAwareness, made for the Programming Logic course @ UFRN
 
-[ENG] Simple Edutainment game for Rabies awareness, made for the Programming Logic course @ UFRN
-
-## Assets License
-
+## Assets License  
 The following assets used in this project are licensed under Creative Commons Attribution 3.0 (CC BY 3.0):
 
 ### Music
